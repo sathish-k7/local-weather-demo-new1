@@ -1,0 +1,29 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Weather App</title>
+    <!-- css Bootstrap 5 -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light text-center">
+    <div class="container p-5">
+        <h1 class="mb-4">Weather Information</h1>
+        <input type="text" id="city" class="form-control" placeholder="Enter city name">
+        <button onclick="getWeather()" class="btn btn-primary mt-3">Get Weather</button>
+        <div id="info" class="mt-5"></div>
+     </div>
+
+    <!-- JavaScript to fetch weather data from API -->
+    <script>
+        async function getWeather() {
+            const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=&longitude=&city=${document.getElementById('city').value}`);
+            const data = await response.json();
+            document.getElementById('info').innerHTML = `<h4>Temperature: ${data.temperature} &#8451;</h4><h4>Humidity: ${data.humidity} %</h4>`;
+        }
+    </script>
+</body>
+
+</html>
